@@ -1,0 +1,27 @@
+name: Prevent Direct Push to Main
+
+on:
+  push:
+    branches:
+      - main
+      - master
+
+jobs:
+  prevent-direct-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for Direct Push
+        run: |
+          echo "❌ Direct push to main branch detected!"
+          echo "🚫 This action is not allowed."
+          echo ""
+          echo "📋 Please follow these steps:"
+          echo "1. Create a feature branch: git checkout -b feature/your-feature"
+          echo "2. Push to feature branch: git push origin feature/your-feature"
+          echo "3. Create a Pull Request"
+          echo ""
+          echo "💡 If this was a mistake, you can:"
+          echo "   git reset --hard HEAD~1  # Remove last commit locally"
+          echo "   git push --force-with-lease origin main  # Force push to remove from remote"
+          echo ""
+          exit 1

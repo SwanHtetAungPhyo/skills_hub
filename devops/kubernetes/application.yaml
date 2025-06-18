@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-swan-go-application
+  labels:
+    app: simple-swan-go-application
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: simple-swan-go-application
+  template:
+    metadata:
+      name: simple-swan-go-application
+      labels:
+        app: simple-swan-go-application
+    spec:
+      containers:
+        - name: simple-swan-go-application
+          image: swanhtetaungphyo1/kubernetes
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+      restartPolicy: Always
+      

@@ -1,0 +1,53 @@
+name: Branch Protection & Developer Guidance
+
+on:
+  push:
+    branches-ignore:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  welcome-developer:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && github.ref != 'refs/heads/main'
+    steps:
+      - name: Welcome New Contributor
+        run: |
+          echo "🎉 Welcome to Tech Skills Hub!"
+          echo "✅ Great job creating a feature branch: ${{ github.ref_name }}"
+          echo "📋 Next steps:"
+          echo "1. Make your changes"
+          echo "2. Push commits to this branch"
+          echo "3. Create a Pull Request to merge into main"
+
+  branch-naming-check:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - name: Check Branch Naming Convention
+        run: |
+          branch_name="${{ github.ref_name }}"
+          if [[ "$branch_name" =~ ^(feature|bugfix|hotfix|docs)/.+ ]]; then
+            echo "✅ Branch name follows convention: $branch_name"
+          elif [[ "$branch_name" == "main" || "$branch_name" == "master" ]]; then
+            echo "ℹ️ Main branch - no naming check needed"
+          else
+            echo "⚠️ Consider using naming convention: feature/your-feature-name"
+            echo "📋 Recommended prefixes: feature/, bugfix/, hotfix/, docs/"
+          fi
+
+  pr-validation:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - name: Validate Pull Request
+        run: |
+          echo "🔍 Validating Pull Request to main branch"
+          echo "✅ PR Title: ${{ github.event.pull_request.title }}"
+          echo "👤 Author: ${{ github.event.pull_request.user.login }}"
+          echo "🌿 From: ${{ github.event.pull_request.head.ref }}"
+          echo "🎯 To: ${{ github.event.pull_request.base.ref }}"

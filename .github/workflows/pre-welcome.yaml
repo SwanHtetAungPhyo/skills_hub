@@ -1,0 +1,40 @@
+name: PR Welcome Message
+
+on:
+  pull_request:
+    types: [opened]
+    branches:
+      - main
+
+jobs:
+  welcome-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Welcome PR
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: `🎉 **Thank you for your contribution!**
+
+              ## 📋 PR Checklist
+              - [ ] Branch follows naming convention (feature/*, bugfix/*, docs/*)
+              - [ ] Code has been tested locally
+              - [ ] Documentation updated if necessary
+              - [ ] No direct commits to main branch
+
+              ## 🔍 Review Process
+              1. Automated checks will run
+              2. Code review by maintainers
+              3. Merge after approval
+
+              ## 💡 Tips
+              - Keep PRs focused and small
+              - Write clear commit messages
+              - Respond to review feedback promptly
+
+              **Happy coding! 🚀**`
+            })
