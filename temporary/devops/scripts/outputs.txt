@@ -1,0 +1,31 @@
+NAME                                         READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/simple-swan-go-application   10/10   10           10          6h55m
+deployment.apps/web-server                   1/1     1            1           4m57s
+
+NAME                                 TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+service/kubernetes                   ClusterIP      10.96.0.1        <none>        443/TCP        6h56m
+service/simple-swan-go-application   LoadBalancer   10.100.225.178   <pending>     80:31000/TCP   6h47m
+service/web-server                   ClusterIP      10.107.153.83    <none>        80/TCP         3m40s
+
+NAME                                              READY   STATUS    RESTARTS   AGE
+pod/simple-swan-go-application-849688fc8b-6gp9v   1/1     Running   0          104s
+pod/simple-swan-go-application-849688fc8b-6h8nj   1/1     Running   0          103s
+pod/simple-swan-go-application-849688fc8b-8qxdt   1/1     Running   0          103s
+pod/simple-swan-go-application-849688fc8b-b9q8z   1/1     Running   0          103s
+pod/simple-swan-go-application-849688fc8b-ckpv8   1/1     Running   0          104s
+pod/simple-swan-go-application-849688fc8b-hslpz   1/1     Running   0          103s
+pod/simple-swan-go-application-849688fc8b-qslw8   1/1     Running   0          103s
+pod/simple-swan-go-application-849688fc8b-wxccg   1/1     Running   0          103s
+pod/simple-swan-go-application-849688fc8b-z6dh5   1/1     Running   0          103s
+pod/simple-swan-go-application-849688fc8b-znc6r   1/1     Running   0          104s
+pod/web-server-849d77d8d5-gp5zq                   1/1     Running   0          103s
+NAME                         READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/web-server   0/1     1            0           0s
+
+NAME                                 TYPE           CLUSTER-IP       EXTERNAL-IP   PORT(S)        AGE
+service/kubernetes                   ClusterIP      10.96.0.1        <none>        443/TCP        7h3m
+service/simple-swan-go-application   LoadBalancer   10.100.225.178   <pending>     80:31000/TCP   6h53m
+service/web-server                   ClusterIP      10.107.153.83    <none>        80/TCP         9m49s
+
+NAME                              READY   STATUS              RESTARTS   AGE
+pod/web-server-849d77d8d5-c945t   0/1     ContainerCreating   0          0s

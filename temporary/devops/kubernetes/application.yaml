@@ -5,7 +5,7 @@ metadata:
   labels:
     app: simple-swan-go-application
 spec:
-  replicas: 3
+  replicas: 10
   selector:
     matchLabels:
       app: simple-swan-go-application
